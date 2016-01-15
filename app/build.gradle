@@ -1,21 +1,35 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        configUIAndroid {
+            keyAlias 'ui-android'
+            keyPassword 'ui-android2729$'
+            storeFile file('E:/Descargas/Otras-Cosas/MyApplicationTestComponentGoogle/ui-android.jks')
+            storePassword 'ui-android2729$'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "ni.com.example.luchonetvv.myapplicationtestcomponentgoogle"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        signingConfig signingConfigs.configUIAndroid
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.configUIAndroid
         }
+        debug {
+            signingConfig signingConfigs.configUIAndroid
+        }
+    }
+    productFlavors {
     }
 }
 
